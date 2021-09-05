@@ -1,0 +1,51 @@
+{% load static %}
+<footer>
+  <hr class="rule">
+  <div class="footer-in">
+    <ul class="links">
+      <li><a href="#">Startup</a></li>
+      <li><a href="{% url "about" %}">About</a></li>
+      <li><a href="#">Carrers</a></li>
+      <li><a href="#">Support</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Feature Request</a></li>
+    </ul>
+    <ul class="links">
+      <li><a href="#">Resources</a></li>
+      <li><a href="{% url "hiw" %}">How it works</a></li>
+      <li><a href="#">Features</a></li>
+    </ul>
+    <div class="newsletter">
+      <h2>Join our Newsletter</h2>
+      <p>Stay up to date with our news, blog posts,
+        and announcements by subscribing to our
+        Newsletter.</p>
+      <div class="form">
+        <input type="email">
+        <button class="button">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="social-links">
+    <a href="#">
+      <img src="{% static 'images/fb.png' %}" alt="Facebook">
+    </a>
+    <a href="#">
+      <img src="{% static 'images/ig.png' %}" alt="Instagram">
+    </a>
+    <a href="#">
+      <img src="{% static 'images/li.png' %}" alt="Linkedin">
+    </a>
+    <a href="#">
+      <img src="{% static 'images/yt.png' %}" alt="Youtube">
+    </a>
+  </div>
+  <hr class="rule">
+  <div class="privacy">
+    <a href="#" class="logo">
+      <img src="{% static 'images/logo.svg' %}" alt="Adwiti">
+    </a>
+    <p>©2021 This page is protected by reCAPTCHA and is subject to the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of services</a>.
+    </p>
+  </div>
+</footer>

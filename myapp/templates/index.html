@@ -1,0 +1,1104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Adwiti</title>
+  <!-- Common Metadata -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" />
+  <!-- Content specific styling -->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" />
+  <script src="https://unpkg.com/convertapi-js/lib/convertapi.js"></script>
+
+</head>
+
+<body class="instant-wow-in-hero lazy">
+  <div id="body-wrapper">
+    <!-- Content -->
+    <div id="body-content">
+      <section class="container-fluid container--hero">
+        <div class="row">
+          <header>
+            <div class="file-name" style="display: flex;flex-direction: row;align-items: center;justify-content: center;gap: 5px;">
+              <button style="background: transparent;border: 0; outline: none;">
+
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                  <path d="M24 18v1h-24v-1h24zm0-6v1h-24v-1h24zm0-6v1h-24v-1h24z" fill="#374050" />
+                  <path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z" /></svg>
+              </button>
+              <input type="text" id="proj_name" style="pointer-events: none;" readonly>
+              <!-- <span class="file-status">All Changes Saved</span> -->
+            </div>
+            <div class="title">
+              <img src="{% static 'images/logo.svg' %}" alt="" style="width: 120px;">
+            </div>
+            <div class="right">
+              <button class="no-bg">
+                <img src="{% static 'images/lock.png' %}" alt="lock" class="icon">
+                <span>Unlock Features</span>
+              </button>
+              <a href="/hiw" style="text-decoration: none;">Help</a>
+              <button class="dw-btn">
+                <img src="{% static 'images/win.png' %}" alt="windows app" class="icon">
+                <span>Get Desktop App</span>
+              </button>
+            </div>
+            <div class="mobile-only-nav-btn">
+              <button>≡</button>
+            </div>
+          </header>
+          <nav class="mobile-only-nav">
+            <button class="no-bg">
+              <img src="{% static 'images/lock.png' %}" alt="lock" class="icon">
+              <span>Unlock Features</span>
+            </button>
+            <a href="/hiw" style="text-decoration: none;">Help</a>
+            <button class="dw-btn">
+              <img src="{% static 'images/win.png' %}" alt="windows app" class="icon">
+              <span>Get Desktop App</span>
+            </button>
+          </nav>
+          <div class="m-m" style="align-items: center; padding:3%; padding-top: 2%;display: flex;gap:20px; position: relative;">
+            <div class="modal-left">
+              <div class="notes-btn">
+                <button>
+                  <img src="{% static 'images/presenter-notes.png' %}" alt="presenter-notes" class="icon">
+                  <span><a href="https://docs.google.com/document/u/0/" target="_blank" style="text-decoration: none; color: #485464;">Presenters Notes</a></span>
+                </button>
+                <button class="notes-nav" title="Show Slides">
+                  <img src="{% static 'images/presenter-notes.png' %}" alt="presenter-notes" class="icon">
+                </button>
+              </div>
+              <div id="instant-wow-modal">
+                <div class="instant-wow">
+                  {% comment %} <div class="camera-wrapper">
+                    <button id="start-cam" class="btn-md start-camera-button camera-button" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="turn-on-camera">
+                      <svg class="camera-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7C4.44772 7 4 7.44772 4 8V16C4 16.5523 4.44772 17 5 17H15C15.5523 17 16 16.5523 16 16V14L19.2 16.4C19.5296 16.6472 20 16.412 20 16V8C20 7.58798 19.5296 7.35279 19.2 7.6L16 10V8C16 7.44772 15.5523 7 15 7H5Z" fill="white" />
+                      </svg>
+                      Allow camera</button><button id="stop-cam" class="
+                          btn-md
+                          white
+                          stop-camera-button
+                          camera-button
+                          hidden
+                        " data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="turn-off-camera">
+                      Turn off camera
+                    </button>
+                  </div> {% endcomment %}
+                  <div id="demo-container" style="background-image: url('{% static 'images/abs.png' %}');">
+                    <video autoplay="true" id="videoElement"></video><img class="background-gradient" src="https://assets.prezicdn.net/assets-versioned/coverservice-versioned/2407-f6bdeb6ba2e664f120d82691c783fafd0e131f4b/common/instant_wow/img/gradient.svg" />
+                    <div class="frames">
+                      <div class="frame frame-1 current" id="1">
+                        <div data-optimizely-experiment="control">
+                          <div class="frame-text">
+                            <h4>Welcome!</h4>
+                            <p>
+                              Add new slide to see <br />
+                              Adwiti in action.
+                            </p>
+                          </div>
+                        </div>
+                        <div data-optimizely-experiment="allow-camera-cta">
+                          <h2>Welcome!</h2>
+                          <p>Turn on your camera to see Adwiti in action.</p>
+                          <button id="allow-cam" class="btn-md green button-spc allow-camera-button" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="allow-camera">
+                            Allow your camera
+                          </button>
+                        </div>
+                      </div>
+                      {% for s in data %}
+                      <div class="frame frame-2 slide-down hidden">
+                        <img src="/media/{{s.slide}}" />
+                        <div class="frame-text">
+                          <p class="frame-p">
+                            {% if s.slide_text != None %}
+                            {{s.slide_text}}
+                            {% endif %}
+                          </p>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      <!-- <div class="frame frame-2 slide-down hidden">
+                        <img src="https://assets.prezicdn.net/assets-versioned/coverservice-versioned/2407-f6bdeb6ba2e664f120d82691c783fafd0e131f4b/common/instant_wow/img/frames/frame_2.png" />
+                        <div class="frame-text">
+                          <p>
+                            Use the forward and back arrows for a quick tour of
+                            how Adwiti Video works.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="frame frame-3 slide-down hidden">
+                        <img src="https://assets.prezicdn.net/assets-versioned/coverservice-versioned/2407-f6bdeb6ba2e664f120d82691c783fafd0e131f4b/common/instant_wow/img/frames/frame_3.png" />
+                        <div class="frame-text">
+                          <p>
+                            View Modes put you in control. Show just you, you
+                            with your graphics, or just your graphics.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="frame frame-4 slide-down hidden">
+                        <img src="https://assets.prezicdn.net/assets-versioned/coverservice-versioned/2407-f6bdeb6ba2e664f120d82691c783fafd0e131f4b/common/instant_wow/img/frames/frame_4.png" />
+                        <div class="frame-text">
+                          <p>
+                            Add frames, images, and text as needed. Organize by
+                            topic and rearrange in the order you want.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="frame frame-5 slide-down hidden">
+                        <img src="https://assets.prezicdn.net/assets-versioned/coverservice-versioned/2407-f6bdeb6ba2e664f120d82691c783fafd0e131f4b/common/instant_wow/img/frames/frame_5.png" />
+                        <div class="frame-text">
+                          <p>
+                            Adwiti Video is easy to use. Simply drag in photos or
+                            PowerPoint files and add text.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="frame frame-6 slide-down hidden">
+                        <img src="https://assets.prezicdn.net/assets-versioned/coverservice-versioned/2407-f6bdeb6ba2e664f120d82691c783fafd0e131f4b/common/instant_wow/img/frames/frame_6.png" />
+                        <div class="frame-text">
+                          <p>
+                            When you’re ready, present live in a video
+                            conference, or record your presentation to share
+                            later.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="frame frame-7 slide-down hidden">
+                        <p>
+                          Adwiti Video keeps your audience focused on you, making
+                          it perfect for business and education.
+                        </p>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="controls">
+                    <div class="left-group">
+                      <div class="view-modes button-group">
+                        <span data-toggle="tooltip" data-placement="bottom" title="Only you"><button id="view-mode-only-you" class="round-left" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-you">
+                            <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.48879 9.0667V9.9892H7.72927C8.86241 9.99644 9.9469 10.4643 10.7467 11.2911C11.5466 12.1178 11.997 13.2365 12 14.4035C12 16.5322 0 16.5322 0 14.4035C0.00403311 13.232 0.458454 12.1098 1.26383 11.2826C2.06921 10.4553 3.15997 9.99023 4.29743 9.9892H4.52979V9.0678C3.75329 8.47199 3.6073 7.42225 3.4663 6.40835C3.43632 6.19279 3.40657 5.97885 3.37103 5.77124C3.20142 5.77062 3.03848 5.70312 2.91569 5.58261C2.7929 5.4621 2.71958 5.29774 2.71079 5.12328C2.702 4.94882 2.75842 4.77753 2.86845 4.64458C2.97848 4.51163 3.13376 4.42714 3.3024 4.40844L3.2757 3.90181C3.22505 3.66846 3.19947 3.43008 3.19944 3.19096C3.15993 2.80157 3.19764 2.40797 3.31027 2.03404C3.42291 1.66011 3.60812 1.31364 3.85468 1.01566C4.10124 0.717676 4.40401 0.47439 4.74461 0.300554C5.08522 0.126718 5.45655 0.0259601 5.8361 0.0043904C6.21565 -0.0171793 6.5955 0.0408879 6.95261 0.175074C7.30971 0.309259 7.63663 0.516766 7.91352 0.785001C8.19042 1.05324 8.41151 1.37661 8.56341 1.7355C8.7153 2.0944 8.79483 2.48134 8.79715 2.87285V2.91212V3.19096C8.79622 3.40844 8.77579 3.62537 8.73614 3.83898L8.70564 4.40844C8.87427 4.42714 9.02956 4.51163 9.13959 4.64458C9.24961 4.77753 9.30603 4.94882 9.29724 5.12328C9.28846 5.29774 9.21513 5.4621 9.09234 5.58261C8.96955 5.70312 8.80661 5.77062 8.637 5.77124C8.60341 5.97413 8.57517 6.18315 8.54671 6.39387C8.40921 7.4117 8.26637 8.46912 7.48879 9.0667Z" fill="#374050"></path>
+                            </svg></button></span>
+                        <span data-toggle="tooltip" data-placement="bottom" title="You and your content"><button id="view-mode-you-and-content" class="selected" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-you-and-content">
+                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 8.4787V9H15V4H8.72752L8.70564 4.40844C8.87427 4.42714 9.02956 4.51163 9.13959 4.64458C9.24961 4.77753 9.30603 4.94882 9.29724 5.12328C9.28846 5.29774 9.21513 5.4621 9.09234 5.58261C8.96955 5.70312 8.80661 5.77062 8.637 5.77124C8.60341 5.97413 8.57517 6.18315 8.54671 6.39387C8.44709 7.13136 8.34466 7.88962 8 8.4787ZM8.6607 2H16C16.5523 2 17 2.44772 17 3V10C17 10.5523 16.5523 11 16 11H10.4362C10.5438 11.0914 10.6475 11.1885 10.7467 11.2911C11.5466 12.1178 11.997 13.2365 12 14.4035C12 16.5322 0 16.5322 0 14.4035C0.00403311 13.232 0.458454 12.1098 1.26383 11.2826C2.06921 10.4553 3.15997 9.99023 4.29743 9.9892H4.52979V9.0678C3.75329 8.47199 3.6073 7.42225 3.4663 6.40835C3.43632 6.19279 3.40657 5.97885 3.37103 5.77124C3.20142 5.77062 3.03848 5.70312 2.91569 5.58261C2.7929 5.4621 2.71958 5.29774 2.71079 5.12328C2.702 4.94882 2.75842 4.77753 2.86845 4.64458C2.97848 4.51163 3.13376 4.42714 3.3024 4.40844L3.27571 3.90181C3.22505 3.66846 3.19947 3.43008 3.19944 3.19096C3.15993 2.80157 3.19764 2.40797 3.31027 2.03404C3.42291 1.66011 3.60812 1.31364 3.85468 1.01566C4.10124 0.717676 4.40401 0.47439 4.74461 0.300554C5.08522 0.126718 5.45655 0.0259601 5.8361 0.0043904C6.21565 -0.0171793 6.5955 0.0408879 6.95261 0.175074C7.30971 0.309259 7.63663 0.516766 7.91352 0.785001C8.19042 1.05324 8.41151 1.37661 8.56341 1.7355C8.60008 1.82215 8.63253 1.91042 8.6607 2Z" fill="#374050"></path>
+                            </svg></button></span>
+                        <span class="o-c" data-toggle="tooltip" data-placement="bottom" title="Only your content">
+                          <button id="view-mode-only-content" class="round-right" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-content">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M6 8V16H18V8H6ZM5 6C4.44772 6 4 6.44772 4 7V17C4 17.5523 4.44772 18 5 18H19C19.5523 18 20 17.5523 20 17V7C20 6.44772 19.5523 6 19 6H5Z" fill="#374050"></path>
+                            </svg>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="left-group">
+                      <div class="view-modes button-group">
+                        <span><button class="round-left" id="start-cam" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="turn-on-camera">
+                            <svg class="camera-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7C4.44772 7 4 7.44772 4 8V16C4 16.5523 4.44772 17 5 17H15C15.5523 17 16 16.5523 16 16V14L19.2 16.4C19.5296 16.6472 20 16.412 20 16V8C20 7.58798 19.5296 7.35279 19.2 7.6L16 10V8C16 7.44772 15.5523 7 15 7H5Z" fill="#374050"></path>
+                            </svg></button></span>
+                        <span><button class="round-left hidden" id="stop-cam" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="turn-off-camera">
+                            <svg class="camera-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7C4.44772 7 4 7.44772 4 8V16C4 16.5523 4.44772 17 5 17H15C15.5523 17 16 16.5523 16 16V14L19.2 16.4C19.5296 16.6472 20 16.412 20 16V8C20 7.58798 19.5296 7.35279 19.2 7.6L16 10V8C16 7.44772 15.5523 7 15 7H5Z" fill="#374050"></path>
+                            </svg></button></span>
+                        <span><button class="" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-you-and-content">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                              <path d="M12 2c1.103 0 2 .897 2 2v7c0 1.103-.897 2-2 2s-2-.897-2-2v-7c0-1.103.897-2 2-2zm0-2c-2.209 0-4 1.791-4 4v7c0 2.209 1.791 4 4 4s4-1.791 4-4v-7c0-2.209-1.791-4-4-4zm8 9v2c0 4.418-3.582 8-8 8s-8-3.582-8-8v-2h2v2c0 3.309 2.691 6 6 6s6-2.691 6-6v-2h2zm-7 13v-2h-2v2h-4v2h10v-2h-4z" fill="#374050" /></svg>
+                          </button></span>
+                        <span style="display: none;" id="recording">
+                          <button class="round-right" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-content">
+                            <img src="{% static 'images/record.svg' %}" alt="" width="14">
+                          </button>
+                        </span>
+                        <span style="display: none;" id="download-recording">
+                          <button class="round-right" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-content">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                              <path d="M16 11h5l-9 10-9-10h5v-11h8v11zm1 11h-10v2h10v-2z" fill="#374050" /></svg>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="navigation-buttons">
+                      <button id="prev" class="navigation-btn round-left disabled">
+                        <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41421 6.00008L8.70711 1.70718L7.29289 0.292969L1.29289 6.29297L0.585787 7.00008L1.29289 7.70718L7.29289 13.7072L8.70711 12.293L4.41421 8.00008H17V6.00008H4.41421Z" fill="#374050" />
+                        </svg>
+                      </button>
+                      <button id="next" class="navigation-btn round-right">
+                        <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5858 6.00008L8.29289 1.70718L9.70711 0.292969L15.7071 6.29297L16.4142 7.00008L15.7071 7.70718L9.70711 13.7072L8.29289 12.293L12.5858 8.00008H0V6.00008H12.5858Z" fill="#374050" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <br />
+                </div>
+                <script>
+                  var currentStep = 0;
+                  var prevButton = document.querySelector("#prev");
+                  var nextButton = document.querySelector("#next");
+                  (function() {
+                    var isCameraOn = false;
+                    var autoTurnOnCamera = false;
+                    var instantWowInHero = false;
+
+                    autoTurnOnCamera = true;
+
+                    instantWowInHero = true;
+
+                    var instantWowNudge = false;
+
+                    var instantWowCameraExperimentEnabled = false;
+
+                    var startButton = document.querySelector("#start-cam");
+                    var allowButton = document.querySelector("#allow-cam");
+                    var stopButton = document.querySelector("#stop-cam");
+                    var preziOverlay = document.querySelector(".frames");
+                    var video = document.querySelector("#videoElement");
+                    var viewOnlyYouButton = document.querySelector(
+                      "#view-mode-only-you"
+                    );
+                    var viewOnlyContentButton = document.querySelector(
+                      "#view-mode-only-content"
+                    );
+                    var viewYouAndConentButton = document.querySelector(
+                      "#view-mode-you-and-content"
+                    );
+                    var gradientBackground = document.querySelector(
+                      ".background-gradient"
+                    );
+                    var wowModalSignupCta = document.querySelector(
+                      "#wow-modal-signup-cta"
+                    );
+                    var viewModeButtons = document.querySelector(
+                      ".view-modes.button-group"
+                    );
+                    var cameraSelector =
+                      document.querySelector(".camera-selector");
+                    var cameraList = document.querySelector(".camera-list");
+
+                    var canSlide = true;
+                    var slideDelay = 1000;
+                    var currentCameraId;
+                    var cameraListInitialized = false;
+
+                    var frames = document.getElementsByClassName("frame");
+
+                    var selectedViewModeButton = viewYouAndConentButton;
+
+                    preziOverlay.classList.add("step-" + currentStep);
+
+                    var allowCameraOnFrame1Experiment = false;
+
+                    if (instantWowInHero) {
+                      window.addEventListener("load", unhideFrames);
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function() {
+                      var tooltips = $(".controls .left-group span");
+                      var heroVideo = document.querySelector(".side-video");
+                      tooltips.tooltip({
+                        trigger: "hover",
+                      });
+
+                      $("#instant-wow-modal").on("show.bs.modal", function() {
+                        if (heroVideo) {
+                          heroVideo.pause();
+                        }
+
+                        if (autoTurnOnCamera && !isCameraOn) {
+                          start();
+                          startButton.classList.add("hidden");
+                        }
+                      });
+
+                      $("#instant-wow-modal").on(
+                        "hidden.bs.modal",
+                        function() {
+                          if (isCameraOn) {
+                            stop();
+                          }
+                          if (heroVideo) {
+                            heroVideo.play();
+                          }
+                        }
+                      );
+
+                      if (allowCameraOnFrame1Experiment) {
+                        frames[0].classList.add("optimizely-allow-camera-cta");
+                        startButton.classList.add("hidden");
+                      }
+                    });
+
+                    function unhideFrames() {
+                      for (var i = 1; i < frames.length; i++) {
+                        var frame = frames[i];
+                        frame.classList.remove("hidden");
+                      }
+                    }
+
+                    function stop() {
+                      var stream = video.srcObject;
+                      var tracks = stream.getTracks();
+
+                      for (var i = 0; i < tracks.length; i++) {
+                        var track = tracks[i];
+                        track.stop();
+                      }
+
+                      isCameraOn = false;
+                      video.srcObject = null;
+
+                      video.classList.remove("stretch-video");
+                      startButton.classList.remove("hidden");
+                      stopButton.classList.add("hidden");
+                    }
+
+                    function start() {
+                      if (navigator.mediaDevices.getUserMedia) {
+                        navigator.mediaDevices
+                          .getUserMedia({
+                            audio: false,
+                            video: {
+                              width: 760,
+                              height: 428,
+                              deviceId: currentCameraId ? {
+                                exact: currentCameraId,
+                              } : undefined,
+                            },
+                          })
+                          .then(function(stream) {
+                            if (
+                              stream.getTracks() &&
+                              stream.getTracks().length > 0
+                            ) {
+                              var settings = stream
+                                .getTracks()[0]
+                                .getSettings();
+                              currentCameraId = settings.deviceId;
+                              if (settings.width < 760) {
+                                video.classList.add("stretch-video");
+                              }
+                            }
+
+                            video.srcObject = stream;
+                            if (currentStep == 0) {
+                              next();
+                            }
+                            isCameraOn = true;
+                            startButton.classList.add("hidden");
+                            stopButton.classList.remove("hidden");
+
+                            if (allowCameraOnFrame1Experiment) {
+                              allowButton.classList.add("disabled");
+                            }
+
+                            if (
+                              instantWowCameraExperimentEnabled &&
+                              !cameraListInitialized
+                            ) {
+                              navigator.mediaDevices
+                                .enumerateDevices()
+                                .then(initializeCameraList);
+                            }
+
+                            logCameraTurnOnSuccess(true);
+                            let mediaRecorder = new MediaRecorder(stream);
+                            const recordingButton = document.getElementById("recording");
+                            console.log(mediaRecorder, recordingButton)
+                            let isRecording = false;
+                            let chunks = [];
+                            recordingButton.addEventListener("click", function(e) {
+                              console.log("recoding...");
+                              if (isRecording) {
+                                isRecording = false;
+                                recordingButton.innerHTML = "<button>R</button>"
+                                mediaRecorder.stop();
+                                console.log(mediaRecorder.state);
+                              } else {
+                                isRecording = true;
+                                recordingButton.innerHTML = "<button>S</button>"
+                                mediaRecorder.start();
+                                console.log(mediaRecorder.state);
+                              }
+                            })
+                            mediaRecorder.ondataavailable = function(e) {
+                              chunks.push(e.data);
+                            }
+                            mediaRecorder.onstop = function(e) {
+                              console.log("stop firing..")
+                              const blob = new Blob(chunks, {
+                                type: 'video/mp4;'
+                              });
+                              chunks = [];
+                              console.log(window.URL.createObjectURL(blob));
+                              document.getElementById("download-recording").addEventListener("click", function() {
+                                const anchor = document.createElement("a");
+                                anchor.href = window.URL.createObjectURL(blob);
+                                anchor.download = "recorded"
+                                anchor.click();
+                              });
+                            }
+                          })
+                          .catch(function(error) {
+                            if (
+                              allowCameraOnFrame1Experiment &&
+                              currentStep == 0
+                            ) {
+                              allowButton.classList.add("disabled");
+                              next();
+                            }
+                            startButton.classList.remove("hidden");
+                            logCameraTurnOnSuccess(false, error.name);
+                          });
+                      }
+                    }
+
+                    function prev() {
+                      if (currentStep <= 0 || !canSlide) {
+                        return;
+                      }
+                      logFrameChange("prev");
+
+                      canSlide = false;
+                      nextButton.classList.remove("disabled");
+
+                      onViewYouAndContent();
+                      frames[currentStep].classList.add("slide-down");
+                      currentStep = currentStep - 1;
+                      frames[currentStep].classList.remove("slide-up");
+
+                      if (currentStep <= 0) {
+                        prevButton.classList.add("disabled");
+                      }
+
+                      if (!instantWowInHero) {
+                        updateCurrentFrameOnSignupCtaHref();
+                      }
+
+                      checkNudgeHighlights();
+
+                      setTimeout(function() {
+                        canSlide = true;
+                      }, slideDelay);
+                      console.log(currentStep)
+                    }
+
+                    function next() {
+                      if (currentStep >= frames.length - 1 || !canSlide) {
+                        return;
+                      }
+
+                      if (allowCameraOnFrame1Experiment && currentStep == 0) {
+                        if (isCameraOn) {
+                          stopButton.classList.remove("hidden");
+                        } else {
+                          startButton.classList.remove("hidden");
+                        }
+                      }
+
+                      logFrameChange("next");
+
+                      canSlide = false;
+                      prevButton.classList.remove("disabled");
+
+                      onViewYouAndContent();
+                      frames[currentStep].classList.add("slide-up");
+                      currentStep = currentStep + 1;
+                      frames[currentStep].classList.remove("slide-down");
+
+                      if (currentStep >= frames.length - 1) {
+                        nextButton.classList.add("disabled");
+                      }
+
+                      if (!instantWowInHero) {
+                        updateCurrentFrameOnSignupCtaHref();
+                      }
+
+                      checkNudgeHighlights();
+
+                      setTimeout(function() {
+                        canSlide = true;
+                      }, slideDelay);
+                    }
+
+                    document.onkeydown = checkKey;
+
+                    function checkKey(e) {
+                      e = e || window.event;
+
+                      switch (e.keyCode) {
+                        case 37:
+                          return prev();
+                        case 39:
+                          return next();
+                        case 49:
+                          return onViewOnlyYou(e);
+                        case 50:
+                          return onViewYouAndContent(e);
+                        case 51:
+                          return onViewOnlyContent(e);
+                      }
+                    }
+
+                    function checkNudgeHighlights() {
+                      if (
+                        currentStep === 1 &&
+                        instantWowNudge &&
+                        !nextHighlighted
+                      ) {
+                        nextButton.classList.add("highlighted");
+                        nextHighlighted = true;
+                      } else {
+                        nextButton.classList.remove("highlighted");
+                      }
+
+                      if (
+                        currentStep === 2 &&
+                        instantWowNudge &&
+                        !viewModesHighlighted
+                      ) {
+                        viewModeButtons.classList.add("highlighted");
+                      }
+                    }
+
+                    function removePreviousViewMode() {
+                      frames[currentStep].classList.remove(
+                        "only-content",
+                        "only-you"
+                      );
+                      selectedViewModeButton.classList.remove("selected");
+                      gradientBackground.classList.remove("only-you");
+                    }
+
+                    function removeViewModeHighlight() {
+                      viewModeButtons.classList.remove("highlighted");
+                      viewModesHighlighted = true;
+                    }
+
+                    function onViewOnlyContent(e) {
+                      removePreviousViewMode();
+                      e && removeViewModeHighlight();
+                      frames[currentStep].classList.add("only-content");
+
+                      selectedViewModeButton = viewOnlyContentButton;
+                      selectedViewModeButton.classList.add("selected");
+                    }
+
+                    function onViewOnlyYou(e) {
+                      removePreviousViewMode();
+                      e && removeViewModeHighlight();
+                      frames[currentStep].classList.add("only-you");
+                      gradientBackground.classList.add("only-you");
+
+                      selectedViewModeButton = viewOnlyYouButton;
+                      selectedViewModeButton.classList.add("selected");
+                    }
+
+                    function onViewYouAndContent(e) {
+                      removePreviousViewMode();
+                      e && removeViewModeHighlight();
+
+                      selectedViewModeButton = viewYouAndConentButton;
+                      selectedViewModeButton.classList.add("selected");
+                    }
+
+                    function logCameraTurnOnSuccess(isSuccess, errorMessage) {
+                      var msg = "camera-on-failure";
+                      var errorMsg = errorMessage || "";
+
+                      if (isSuccess) {
+                        msg = "camera-on-success";
+                      }
+
+                      $.jsonlog({
+                        _action: "click",
+                        _category: "website_events",
+                        trigger: "camera-turn-on",
+                        object: "logged_element",
+                        page_location: "instant-wow-modal",
+                        putma_id: $.cookie("__putma"),
+                        element_text: msg,
+                        error_message: errorMsg,
+                      });
+                    }
+
+                    function logFrameChange(direction) {
+                      var frame = currentStep + 1;
+                      $.jsonlog({
+                        _action: "click",
+                        _category: "website_events",
+                        trigger: "click",
+                        object: "logged_element",
+                        page_location: "instant-wow-modal",
+                        putma_id: $.cookie("__putma"),
+                        element_text: direction + "-on-frame-" + frame,
+                      });
+                    }
+
+                    function logSelectedCamera(cameraLabel) {
+                      $.jsonlog({
+                        _action: "click",
+                        _category: "website_events",
+                        trigger: "click",
+                        object: "logged_element",
+                        page_location: "instant-wow-modal",
+                        putma_id: $.cookie("__putma"),
+                        element_text: "switch-camera",
+                        camera: cameraLabel,
+                      });
+                    }
+
+                    function updateCurrentFrameOnSignupCtaHref() {
+                      var href = wowModalSignupCta.href;
+                      var href_parts = href.split("_from_frame_");
+                      href_parts[1] = currentStep + 1;
+                      wowModalSignupCta.href = href_parts.join("_from_frame_");
+                    }
+
+                    function initializeCameraList(devices) {
+                      var videoDevices = devices.filter(function(d) {
+                        return d.kind === "videoinput";
+                      });
+
+                      videoDevices.forEach(function(element, index) {
+                        var iconClass =
+                          element.deviceId === currentCameraId ? "" : "hidden";
+                        $(cameraList).append(
+                          "<li data-camera-id=" +
+                          element.deviceId +
+                          '><a href="#">' +
+                          checkIconSvg(iconClass) +
+                          element.label +
+                          "</a></li>"
+                        );
+                      });
+
+                      $(cameraList).find("a").click(onCameraSelect);
+
+                      $(cameraSelector).find("button").removeClass("disabled");
+                      $(cameraSelector).find("span").tooltip("disable");
+
+                      cameraListInitialized = true;
+                    }
+
+                    function onCameraSelect(e) {
+                      e.preventDefault();
+                      var selectedCameraId = $(e.target.parentElement).data(
+                        "camera-id"
+                      );
+
+                      if (currentCameraId !== selectedCameraId) {
+                        currentCameraId = selectedCameraId;
+                        start();
+                      }
+
+                      // Set the check mark icon for the selected camera
+                      $(cameraList)
+                        .find("a")
+                        .each(function(index, element) {
+                          var checkMark = $(element).find("svg");
+                          var cameraId = $(element.parentElement).data(
+                            "camera-id"
+                          );
+
+                          checkMark.attr(
+                            "class",
+                            selectedCameraId === cameraId ? "" : "hidden"
+                          );
+                        });
+
+                      logSelectedCamera($(e.target.parentElement).text());
+                    }
+
+                    function checkIconSvg(classes) {
+                      return (
+                        '<svg class="' +
+                        classes +
+                        '" width="16" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.52494 9.09617L1.98941 5.56064L0.575195 6.97485L4.11073 10.5104L5.52494 11.9246L6.93916 10.5104L15.4244 2.02511L14.0102 0.610893L5.52494 9.09617Z" fill="#374050"></path></svg>'
+                      );
+                    }
+
+                    viewOnlyContentButton.addEventListener(
+                      "click",
+                      onViewOnlyContent
+                    );
+                    viewOnlyYouButton.addEventListener("click", onViewOnlyYou);
+                    viewYouAndConentButton.addEventListener(
+                      "click",
+                      onViewYouAndContent
+                    );
+                    startButton.addEventListener("click", start);
+                    allowButton.addEventListener("click", start);
+                    stopButton.addEventListener("click", stop);
+                    prevButton.addEventListener("click", prev);
+                    nextButton.addEventListener("click", next);
+                  })();
+                </script>
+              </div>
+              <div class="footer-btns">
+                <button class="flex-c need-fullscreen" disabled style="cursor: not-allowed;">
+                  <!-- <span class="bd">Present in video conference</span> -->
+                  <span style="display: flex;align-items: center;">
+                    <img src="{% static 'images/icon-dwn.png' %}" alt="Download" class="icon">
+                    <span>Present</span>
+                  </span>
+                </button>
+                <button style="cursor: not-allowed;" class="need-fullscreen" disabled>
+                  <img src="{% static 'images/record.svg' %}" alt="videocam" class="icon">
+                  <span class="bd">Record</span>
+                </button>
+              </div>
+            </div>
+            <div class="modal-right">
+              <div class="slide-info">
+                <h2>Slide Elements</h2>
+                <div class="text-area">
+                  <label for="text">Add Text</label>
+                  <textarea name="text" id="text" cols="30" rows="10" placeholder="Click to add text (75 words)..." class="text-s" maxlength="91"></textarea>
+                </div>
+                <div class="visuals">
+                  <label for="">Add Visuals</label>
+                  <div class="visual-buttons">
+                    <form id="form" method="post">{% csrf_token %}
+                      <input type="file" name="file" id="file" onchange="readURL(this)" />
+                    </form>
+                    <!-- The magic that makes it work -->
+                    <!-- <label for="file">Choose a file</label> -->
+
+                    <!-- <button>
+                      <img src="{% static 'images/icon-upload.png' %}" alt="Upload" class="icon">
+                      <span>Upload</span>
+                    </button>
+                    <button id="img-upload">
+                      <img src="{% static 'images/icon-images.png' %}" alt="Images" class="icon">
+                      <span>Images</span>
+                    </button>
+                    <button>
+                      <img src="{% static 'images/icon-videocam.png' %}" alt="videos" class="icon">
+                      <span>Videos</span>
+                    </button> -->
+                    <!-- <button>
+                      <img src="{% static 'images/icon-flag.png' %}" alt="Flag" class="icon">
+                      <span>Flag</span>
+                    </button> -->
+                  </div>
+                  <p></p>
+                  <label for="fileInput">Select PDF and Refresh</label>
+                  <input id="fileInput" type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                  <p id="result">
+                    Result file:
+                    <a id="resultLink" href=""></a>
+                  </p>
+                </div>
+                <div class="search-visuals" style="margin-top: 6%;">
+                  <input type="search" placeholder="Search for visuals...">
+                </div>
+                <br>
+                <center style="color:#56647d">
+                  <button id="save-project">Save Project</button>
+                </center>
+              </div>
+              <div class="slides">
+                {% for s in data %}
+                <div class="slide" style="background-size: cover; background-repeat: no-repeat; background-image: url('/media/{{s.slide}}')">
+                </div>
+                {% endfor %}
+                <div class="slide-add" id="slide-add">
+                  <img src="{% static 'images/icon-plus.png' %}" alt="Add slides" class="icon">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- JavaScript -->
+    <script src="{% static 'js/nav.js' %}">
+    </script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    <script>
+      var x = document.URL;
+      var y = x.split("/");
+      console.log(y[5]);
+      document.getElementById("proj_name").value = y[5];
+      /*const slideAddButton = document.getElementById("slide-add");
+      const slides = document.querySelector(".slides");*/
+      /*slideAddButton.addEventListener("click", function() {
+        const slide = document.createElement("div");
+        slide.classList.add("slide");
+        slides.insertBefore(slide, this);
+      });*/
+      const needFullScreen = document.querySelectorAll(".need-fullscreen");
+      needFullScreen.forEach(element => {
+        element.addEventListener("click", function() {
+          fullScreen();
+        })
+      })
+
+      function fullScreen() {
+        document.querySelector(".notes-btn").style.display = "none";
+        document.querySelector("header").style.display = "none";
+        document.querySelector(".modal-right").style.display = "none";
+        document.querySelector(".footer-btns").style.display = "none";
+        document.querySelector("#instant-wow-modal").classList.add("fullscreen");
+        document.querySelector("#instant-wow-modal").scrollIntoView()
+        document.querySelector(".m-m").classList.add("no-padding");
+        document.querySelector(".row").classList.add("no-padding");
+        document.querySelector("#body-content").classList.add("no-padding");
+        document.querySelector("html").style.overflow = "hidden";
+      }
+    </script>
+
+    <script>
+      var frame_id = 2;
+      var slides = {};
+      const slideAddButton = document.getElementById("slide-add");
+      const slidess = document.querySelector(".slides");
+      const allSlides = document.querySelectorAll(".slide");
+      allSlides.forEach(function(slide, index) {
+        slide.addEventListener("click", function() {
+          document.getElementById("view-mode-you-and-content").click();
+          const frames = document.querySelectorAll(".frame");
+          console.log(index + 1, currentStep)
+          if (currentStep > index + 1) {
+            while (currentStep > index + 1) {
+              console.log(currentStep);
+              console.log(frames[currentStep]);
+              frames[currentStep].classList.add("slide-down");
+              frames[currentStep].classList.remove("slide-up");
+              currentStep--;
+            }
+            frames[currentStep].classList.remove("slide-down");
+            frames[currentStep].classList.remove("slide-up");
+          }
+          if (currentStep < index + 1) {
+            while (currentStep < index + 1) {
+              console.log(currentStep);
+              console.log(frames[currentStep]);
+              frames[currentStep].classList.add("slide-up");
+              frames[currentStep].classList.remove("slide-down");
+              currentStep++;
+            }
+            frames[currentStep].classList.remove("slide-down");
+            frames[currentStep].classList.remove("slide-up");
+          }
+          prevButton.classList.remove("disabled");
+          nextButton.classList.remove("disabled");
+          if (currentStep <= 0) {
+            prevButton.classList.add("disabled");
+          }
+          if (currentStep >= frames.length - 1) {
+            nextButton.classList.add("disabled");
+          }
+          document.querySelector(".text-s").value = document.querySelectorAll(".frame")[currentStep].querySelector(".frame-p").textContent.trim();
+        })
+      })
+      let convertApi = ConvertApi.auth({
+        secret: 'PMT9cOGPR7TxI3ph'
+      })
+      let elResult = document.getElementById('result')
+      let elResultLink = document.getElementById('resultLink')
+      elResult.style.display = 'none'
+
+      // On file input change, start conversion
+      document.getElementById('fileInput').addEventListener('change', async e => {
+        elResult.style.display = 'none'
+        document.documentElement.style.cursor = 'wait'
+        try {
+
+          // Converting DOCX to png file
+          let params = convertApi.createParams()
+          params.add('file', e.currentTarget.files[0])
+          let result = await convertApi.convert('pdf', 'png', params)
+          // console.log(result.dto.Files);
+
+
+          var formData = new FormData();
+          formData.append('name', '{{project_name}}');
+          formData.append('data', JSON.stringify(result.dto.Files))
+          // formData = result.dto.Files.serialize()
+          $.ajax({
+            url: "{% url 'addPPTAjax' %}",
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            headers: {
+              'X-CSRFToken': "{{csrf_token}}"
+            },
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function(data) {}
+          });
+        } finally {
+          document.documentElement.style.cursor = 'default'
+        }
+      })
+      $('.slide-add').on('click', function() {
+        const slide = document.createElement("div");
+        slide.classList.add("slide");
+        let index = document.querySelectorAll(".slide").length;
+        slide.addEventListener("click", function() {
+          document.getElementById("view-mode-you-and-content").click();
+          const frames = document.querySelectorAll(".frame");
+          console.log(index + 1, currentStep)
+          if (currentStep > index + 1) {
+            while (currentStep > index + 1) {
+              console.log(currentStep);
+              console.log(frames[currentStep]);
+              frames[currentStep].classList.add("slide-down");
+              frames[currentStep].classList.remove("slide-up");
+              currentStep--;
+            }
+            frames[currentStep].classList.remove("slide-down");
+            frames[currentStep].classList.remove("slide-up");
+          }
+          if (currentStep < index + 1) {
+            while (currentStep < index + 1) {
+              console.log(currentStep);
+              console.log(frames[currentStep]);
+              frames[currentStep].classList.add("slide-up");
+              frames[currentStep].classList.remove("slide-down");
+              currentStep++;
+            }
+            frames[currentStep].classList.remove("slide-down");
+            frames[currentStep].classList.remove("slide-up");
+          }
+          prevButton.classList.remove("disabled");
+          nextButton.classList.remove("disabled");
+          if (currentStep <= 0) {
+            prevButton.classList.add("disabled");
+          }
+          if (currentStep >= frames.length - 1) {
+            nextButton.classList.add("disabled");
+          }
+          document.querySelector(".text-s").value = document.querySelectorAll(".frame")[currentStep].querySelector(".frame-p").textContent.trim();
+        })
+        slide.style.backgroundSize = "cover";
+        slide.style.backgroundRepeat = "no-repeat";
+        slidess.insertBefore(slide, this);
+        if (document.querySelectorAll(".slide").length >= 6) {
+          this.scrollIntoView();
+        }
+        prevButton.classList.remove("disabled");
+        nextButton.classList.remove("disabled");
+        /*if (currentStep <= 0) {
+          prevButton.classList.add("disabled");
+        }
+        if (currentStep >= frames.length - 1) {
+          nextButton.classList.add("disabled");
+        }*/
+        /* $('.frame').each(function() {
+          $('#next').click();
+        }); */
+        $('.current').removeClass('current');
+        var elem = '<div class="frame frame-' + frame_id + ' slide-down" id="' + frame_id + '"><img src="" /><div class="frame-text">' +
+          '<p class="frame-p">Add frames, images, and text as needed.</p></div></div>';
+        $('.frames').append(elem);
+        /* $('#next').click(); */
+        frame_id++;
+      });
+      $('#text').keyup(function() {
+        var a = $(this).val();
+        //$('.current').children().children('p').text(a);
+        document.querySelectorAll(".frame")[currentStep].querySelector(".frame-p").textContent = a
+      });
+
+      $('#next').on('click', function() {
+        var nexid = parseInt($('.current').attr('id')) + 1
+        if ($('#' + nexid).length) {
+          $('.current').removeClass('current');
+          $('#' + nexid).addClass('current');
+        }
+        document.querySelector(".text-s").value = document.querySelectorAll(".frame")[currentStep].querySelector(".frame-p").textContent.trim();
+      });
+
+      $('#prev').on('click', function() {
+        var preid = parseInt($('.current').attr('id')) - 1
+        if ($('#' + preid).length) {
+          $('.current').removeClass('current');
+          $('#' + preid).addClass('current');
+        }
+        document.querySelector(".text-s").value = document.querySelectorAll(".frame")[currentStep].querySelector(".frame-p").textContent.trim();
+      });
+
+
+      function readURL(input) {
+        if ($('.current').attr('id') != "1") {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              document.querySelectorAll(".frame")[currentStep].querySelector("img").setAttribute('src', e.target.result);
+              document.querySelectorAll(".slide")[currentStep - 1].style.backgroundImage = `url(${e.target.result})`;
+            };
+            reader.readAsDataURL(input.files[0]);
+            slides[$('.current').attr('id')] = document.getElementById('file').files[0];
+          }
+        }
+      }
+
+      $('#form').on('change', function(e) {
+        if ($('.current').attr('id') != "1") {
+          var formData = new FormData(this);
+          formData.append('name', '{{project_name}}');
+          $.ajax({
+            url: "{% url 'addImgAjax' %}",
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            headers: {
+              'X-CSRFToken': "{{csrf_token}}"
+            },
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function(data) {}
+          });
+        }
+      });
+
+      $('#save-project').on('click', function() {
+        var fdata = new FormData();
+        fdata.append('name', '{{project_name}}');
+        let i = 2;
+        $('.frame').each(function() {
+          if ($(this).attr('id') != "1") {
+            /*console.log($(this).attr('id'), $(this).children().children('p').text())
+            fdata.append('text' + $(this).attr('id'), $(this).children().children('p').text());*/
+            console.log("saving..")
+            console.log(i, $(this).children().children('p').text())
+            fdata.append(`text${i}`, $(this).children().children('p').text())
+            i++;
+            // fdata.append('slide'+$(this).attr('id'), slides[$(this).attr('id')]);
+            // if (slides.hasOwnProperty($(this).attr('id'))) {
+            // }
+          }
+        });
+        $.ajax({
+          url: "{% url 'addSlideAjax' %}",
+          type: 'POST',
+          enctype: 'multipart/form-data',
+          headers: {
+            'X-CSRFToken': "{{csrf_token}}"
+          },
+          data: fdata,
+          processData: false,
+          contentType: false,
+          cache: false,
+          success: function(data) {
+            alert('Project Saved');
+          }
+        });
+      });
+    </script>
+</body>
+
+</html>

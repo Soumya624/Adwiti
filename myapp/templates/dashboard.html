@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Adwiti Dashboard
+{% endblock %}
+{% block content %}
+<div class="dashboard">
+  <h2 class="title center">Welcome <span class="username">{{request.user.username}}</span></h2>
+  <div class="dashboard-title">
+    <p>All Projects</p>
+    <button type="button" class="button" id="new-project">New Project</button>
+  </div>
+  <div class="projects">
+    {% for i in data %}
+    <div class="project">
+      <div class="project-illust">
+        <img src="{% static 'images/project_illust.svg' %}" alt="Illustration">
+      </div>
+      <div class="project-cta">
+        <p class="project-title">{{i.name | capfirst}}</p>
+        <a href="{% url "adwiti" request.user.username i.name %}" target="_blank">View Project</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="modal-container new-project-modal">
+  <div class="modal">
+    <div class="modal-title">
+      <p>Project Name</p>
+      <button class="new-project-modal-close">
+        <img src="{% static 'images/icon-close.svg' %}" alt="close" />
+      </button>
+    </div>
+    <form id="new-project-form" action="{% url "projectStartAjax" %}" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="project-name">New Project</label>
+        <input type="text" id="project-name" name="project-name" placeholder="Project Name" autocomplete="off" spellcheck="false" required />
+      </div>
+    </form>
+    <div class="action">
+      <button type="submit" form="new-project-form" class="button" id="new-project-form-button">
+        Start
+      </button>
+      <p class="tip">Project Name should not contain spaces</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static "js/new_proj.js" %}"></script>
+{% endblock %}

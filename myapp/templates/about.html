@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+About Us - Adwiti
+{% endblock %}
+{% block content %}
+<div class="about">
+  <h2 class="title center">How we started</h2>
+  <p class="a-info">We are a group of IITians, eager to solve problems with our technological focus and powers. Our story begins with our thirst for a better world which is what drives us to come up with such solutions and ventures. We believe its worth the risk, since the potential products that could be created have the capability to redefine our world.</p>
+  <h2 class="title mission"><span>Our Mission</span>
+    Build the world where people can
+    unlock limitless creativity
+  </h2>
+  <p class="a-info">
+    A revolutionary innovation, a new medium for design that is more effective and innovative, attempting to solve challenges through technology and imagination, tools development at every possible opportunity, and maximizing the productivity at the expense of our software.
+  </p>
+  <div class="video-pic">
+    <img src="{% static 'images/Video2.png' %}" alt="Illustration Adwiti">
+  </div>
+  {% include 'team.html' %}
+</div>
+{% endblock %}

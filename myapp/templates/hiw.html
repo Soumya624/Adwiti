@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+How Adwiti works?
+{% endblock %}
+{% block content %}
+<div class="hiw">
+  <h2 class="title center" style="font-size: 60px;">How it works?</h2>
+  <p class="hiw-info">Adwiti helps you to present seamlessly with its user friendly interface while enhancing the
+    connection with the concept for your audience
+  </p>
+
+  <div class="screen-pic">
+    <img src="{% static 'images/screentime.png' %}" alt="screentime">
+  </div>
+  <h2 class="title easy-text center">wow that was <span>easy</span>.</h2>
+  <div class="stat-pic">
+    <img src="{% static 'images/stat.png' %}" alt="">
+  </div>
+</div>
+{% endblock %}

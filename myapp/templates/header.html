@@ -1,0 +1,12 @@
+{% load static %}
+<header>
+  <div class="logo">
+    <a href="{% url "home" %}">
+      <img src="{% static 'images/logo.svg' %}" alt="Adwiti Logo">
+    </a>
+  </div>
+  {% include "nav.html" %}
+  <div class="mobile-nav">
+    {% include "nav.html" %}
+  </div>
+</header>

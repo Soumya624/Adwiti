@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    {% block title %} {% endblock %}
+  </title>
+  <meta name="description" content="Adwiti is your hub for designing just like in professional tools easy, quick & presenting it efficiently, eliminating the hassle of using different tools to get your task done so you can get back to work." />
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+</head>
+
+<body>
+  {% include "header.html" %}
+  {% include "messages.html" %}
+  {% if not request.user.is_authenticated %}
+  {% include "auth_modals.html" %}
+  {% endif %}
+  <main>
+    {% block content %} {% endblock content %}
+  </main>
+  {% include "footer.html" %}
+  <script src="{% static 'js/scripts.js' %}" defer></script>
+  {% if not request.user.is_authenticated %}
+  <script src="{% static 'js/auth_modals.js' %}"></script>
+  {% endif %}
+  {% block scripts %} {% endblock %}
+</body>
+
+</html>

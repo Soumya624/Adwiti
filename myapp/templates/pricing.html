@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+Choose your Plan - Adwiti
+{% endblock %}
+{% block content %}
+<div class="pricing">
+  <h2 class="title center">Our Design Plans</h2>
+  <div class="plans">
+    <div class="plan">
+      <p class="plan-title" style="font-size: 30px;">Basic</p>
+      <p class="plan-pricing"><span class="plan-price">₹ 0</span></p>
+      <ul class="plan-features">
+        <li>Everything you need to start a video presentation</li>
+        <li>Dashboard</li>
+        <li>Starter Plan</li>
+      </ul>
+      <button class="button">Start Basic</button>
+    </div>
+    <div class="plan recommended">
+      <p class="plan-title">Pro</p>
+      <p class="plan-popular">Most Popular</p>
+      <p class="plan-pricing"><span class="plan-price">₹ 49</span>/Month</p>
+      <ul class="plan-features">
+        <li>Everything basic has, plus:</li>
+        <li>No Watermark</li>
+        <li>Record Video</li>
+      </ul>
+      <button class="button">Start Pro</button>
+    </div>
+  </div>
+</div>
+{% include 'reviews.html' %}
+{% endblock %}

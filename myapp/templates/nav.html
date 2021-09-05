@@ -1,0 +1,26 @@
+{% load static %}
+<nav>
+  <button id="nav-btn" class="nav-btn">
+    <img src="{% static 'images/icon-hamburger.svg' %}" alt="Open Menu">
+  </button>
+  <ul class="nav-links">
+    <li>
+      <a href="{% url "hiw" %}">How it works</a>
+    </li>
+    {% if not request.user.is_authenticated %}
+    <li>
+      <a href="{% url "pricing" %}">Pricing</a>
+    </li>
+    <li>
+      <a href="{% url "about" %}">About us</a>
+    </li>
+    <li><a href="#" class="invoke-login">Login</a></li>
+    <li><a href="#" class="button outline invoke-register">Join now</a></li>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+    <li><a href="{% url "my_account" %}">My Account</a></li>
+    <li><a href="{% url "logout" %}">Logout</a></li>
+    <li><a href="{% url "dashboard" %}" class="button outline">Dashboard</a></li>
+    {% endif %}
+  </ul>
+</nav>

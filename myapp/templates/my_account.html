@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Account Details - Adwiti
+{% endblock %}
+{% block content %}
+<div class="my-account">
+  <h2 class="title center" style="opacity: 0.8;">My Account</h2>
+  <div class="option-expansion">
+    <ul class="options">
+      <li data-target="account">Account</li>
+      <li data-target="current-plan">Plan</li>
+    </ul>
+    <div class="expansions">
+      <div class="account view" id="account">
+        <div class="update-info">
+          <h2 class="title">Update Info</h2>
+          <div class="form-secondary">
+            <form action="{% url "update_info" %}" method="POST" id="update-form" class="update-form">
+              {% csrf_token %}
+              <div class="input-group">
+                <label for="email">Name</label>
+                <div class="input-field">
+                  <input type="name" name="name" id="name" autocomplete="off" spellcheck="false" value={{request.user.first_name}} required>
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="username">Username</label>
+                <div class="input-field disabled">
+                  <input type="text" id="username" autocomplete="off" spellcheck="false" value={{request.user.username}} disabled>
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="email">Email</label>
+                <div class="input-field">
+                  <input type="email" name="email" id="email" autocomplete="off" spellcheck="false" value={{request.user.email}} required>
+                </div>
+              </div>
+              <div class="form-footer">
+                <button type="submit" class="button" id="update-btn">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="change-password">
+          <h2 class="title">Change Password</h2>
+          <div class="form-secondary">
+            <form action="{% url "change_password" %}" method="POST" id="change-password-form" class="change-password-form">
+              {% csrf_token %}
+              <div class="input-group">
+                <label for="password">Current Password</label>
+                <div class="input-field">
+                  <input type="password" name="current-password" id="current-password" autocomplete="off" minlength="8" maxlength="20" spellcheck="false" required>
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="password">New Password</label>
+                <div class="input-field">
+                  <input type="password" name="new-password" minlength="8" maxlength="20" id="new-password" autocomplete="off" spellcheck="false" required>
+                </div>
+              </div>
+              <div class="form-footer">
+                <button type="submit" class="button" id="change-password-btn">Change Password</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="current-plan" id="current-plan">
+        <h2 class="title">You're in Basic Plan</h2>
+        <div class="plan">
+          <p class="plan-title">Pro</p>
+          <p class="plan-pricing"><span class="plan-price">₹ 49</span>/Month</p>
+          <ul class="plan-features">
+            <li>Everything basic has, plus:</li>
+            <li>No Watermark</li>
+            <li>Record Video</li>
+          </ul>
+          <button class="button">Start Pro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/my_account.js' %}"></script>
+{% endblock %}
