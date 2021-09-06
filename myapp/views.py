@@ -206,16 +206,33 @@ def addPPTAjax(request):
     return JsonResponse({'data': json.loads(request.POST['data'])})
 
 
+# def addImgAjax(request):
+#     data = {}
+#     user = projectUser.objects.get(user=request.user)
+#     proj = project.objects.get(user=user, name=request.POST['name'])
+#     sl = slide.objects.create(
+#         file_type="image",
+#         slide=request.FILES['file'],
+#     )
+#     proj.slides.add(sl)
+#     return JsonResponse(data)
+
 def addImgAjax(request):
     data = {}
     user = projectUser.objects.get(user=request.user)
     proj = project.objects.get(user=user, name=request.POST['name'])
-    sl = slide.objects.create(
-        file_type="image",
-        slide=request.FILES['file'],
-    )
-    proj.slides.add(sl)
+    s = proj.slides.get(id=request.POST['id'])
+    s.slide = request.FILES['file']
+    s.save()
+    proj.save();
     return JsonResponse(data)
+
+def createSlideAjax(request):
+    user = projectUser.objects.get(user=request.user)
+    proj = project.objects.get(user=user, name=request.POST['name'])
+    s1 = slide.objects.create()
+    proj.slides.add(s1)
+    return JsonResponse({"id": s1.id})
 
 
 def addSlideAjax(request):

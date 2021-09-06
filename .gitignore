@@ -1,0 +1,14 @@
+*.pyc
+*~
+/.vscode
+__pycache__
+virtual
+db.sqlite3
+/static
+.DS_Store
+env/
+myenv/
+virtual/
+v/
+myvenv/
+migrations/

@@ -17,7 +17,7 @@
 </head>
 
 <body class="instant-wow-in-hero lazy">
-  
+
   <div id="body-wrapper">
     <!-- Content -->
     <div id="body-content">
@@ -94,7 +94,7 @@
                   <div id="demo-container" style="background-image: url('{% static 'images/abs.png' %}');">
                     <video autoplay="true" id="videoElement"></video><img class="background-gradient" src="https://assets.prezicdn.net/assets-versioned/coverservice-versioned/2407-f6bdeb6ba2e664f120d82691c783fafd0e131f4b/common/instant_wow/img/gradient.svg" />
                     <div class="frames">
-                      <div class="frame frame-1 current" id="1">
+                      <div class="frame frame-1 current welcome-txt" id="1">
                         <div data-optimizely-experiment="control">
                           <div class="frame-text">
                             <h4>Welcome!</h4>
@@ -113,12 +113,18 @@
                         </div>
                       </div>
                       {% for s in data %}
-                      <div class="frame frame-2 slide-down hidden">
+                      <div class="frame frame-2 slide-down hidden" data-slide-id="{{s.id}}">
+                        {% if s.slide %}
                         <img src="/media/{{s.slide}}" />
+                        {% else %}
+                        <img src="">
+                        {% endif %}
                         <div class="frame-text">
                           <p class="frame-p">
                             {% if s.slide_text != None %}
                             {{s.slide_text}}
+                            {% else %}
+                            Add your text here.
                             {% endif %}
                           </p>
                         </div>
@@ -534,7 +540,7 @@
                     function checkKey(e) {
                       e = e || window.event;
 
-                      switch (e.keyCode) {
+                      /*switch (e.keyCode) {
                         case 37:
                           return prev();
                         case 39:
@@ -545,7 +551,7 @@
                           return onViewYouAndContent(e);
                         case 51:
                           return onViewOnlyContent(e);
-                      }
+                      }*/
                     }
 
                     function checkNudgeHighlights() {
@@ -797,7 +803,7 @@
                     Result file:
                     <a id="resultLink" href=""></a>
                   </p>
-                  
+
                 </div>
                 <div class="search-visuals" style="margin-top: 6%;">
                   <input type="search" placeholder="Search for visuals...">
@@ -807,12 +813,12 @@
                 </div>
                 <!-- <img src="{% static 'images/ZZ5H.gif' %}" alt="Adwiti" class="loader" style="position: absolute; display: block; width: 2%; align-items: center;" /> -->
                 <center style="color:#56647d">
-                  <button id="save-project">Save Project</button>
+                  <button id="save-project" style="width: 108.875px;display: flex;justify-content: center;">Save Project</button>
                 </center>
               </div>
               <div class="slides" id="slides">
                 {% for s in data %}
-                <div class="slide" style="background-size: cover; background-repeat: no-repeat; background-image: url('/media/{{s.slide}}')">
+                <div class="slide" data-slide-id="{{s.id}}" style="background-size: cover; background-repeat: no-repeat; background-image: {% if s.slide %}url('/media/{{s.slide}}'){% endif %}">
                 </div>
                 {% endfor %}
                 <div class="slide-add" id="slide-add">
@@ -945,8 +951,8 @@
             success: function(data) {
               loader.style.display = "none";
               console.log(data);
-              let response_data =  data.data
-              let s =  document.getElementById("slides")
+              let response_data = data.data
+              let s = document.getElementById("slides")
               let frames = document.querySelectorAll(".frames.step-0");
               for (let i of response_data) {
                 let url_img = i.Url
@@ -955,14 +961,14 @@
                 el.style = `background-image: url('${url_img}'); background-size: cover; background-repeat: no-repeat;`
                 //lt el = `<div class="slide" style="background-size: cover; background-repeat: no-repeat; background-image: url(${url_img})"></div>`
                 // <div class="frame frame-2 slide-up">
-                  // <img src="/media/Frame_12_2_5r3gJkI.png">
-                  //       <div class="frame-text">
-                  //         <p class="frame-p">
-                            
-                  //         </p>
-                  //       </div>
-                  //     </div>
-                  
+                // <img src="/media/Frame_12_2_5r3gJkI.png">
+                //       <div class="frame-text">
+                //         <p class="frame-p">
+
+                //         </p>
+                //       </div>
+                //     </div>
+
                 let frame_el = `<div class="frame frame-2 slide-up"><img src=${url_img}/><div class="frame-text"> <p class="frame-p"></p></div></div>`
                 frames.innerHTML += frame_el
                 s.insertBefore(el, slideAddButton);
@@ -976,70 +982,93 @@
       })
       $('#slide-add').on('click', function() {
         console.log(slideAddButton);
-        const slide = document.createElement("div");
-        slide.classList.add("slide");
-        let index = document.querySelectorAll(".slide").length;
-        slide.addEventListener("click", function() {
-          document.getElementById("view-mode-you-and-content").click();
-          const frames = document.querySelectorAll(".frame");
-          console.log(index + 1, currentStep)
-          if (currentStep > index + 1) {
-            while (currentStep > index + 1) {
-              console.log(currentStep);
-              console.log(frames[currentStep]);
-              frames[currentStep].classList.add("slide-down");
-              frames[currentStep].classList.remove("slide-up");
-              currentStep--;
+        const formData = new FormData();
+        formData.append('name', '{{project_name}}');
+        this.innerHTML = "...";
+        let that = this;
+        $.ajax({
+          url: "{% url 'createSlideAjax' %}",
+          type: 'POST',
+          enctype: 'multipart/form-data',
+          headers: {
+            'X-CSRFToken': "{{csrf_token}}"
+          },
+          data: formData,
+          processData: false,
+          contentType: false,
+          cache: false,
+          success: function(data) {
+            if (data.id) {
+              that.innerHTML = `<img src="/static/images/icon-plus.png" alt="Add slides" class="icon">`;
+              const slide = document.createElement("div");
+              slide.classList.add("slide");
+              slide.setAttribute("data-slide-id", data.id);
+              let index = document.querySelectorAll(".slide").length;
+              slide.addEventListener("click", function() {
+                document.getElementById("view-mode-you-and-content").click();
+                const frames = document.querySelectorAll(".frame");
+                console.log(index + 1, currentStep)
+                if (currentStep > index + 1) {
+                  while (currentStep > index + 1) {
+                    console.log(currentStep);
+                    console.log(frames[currentStep]);
+                    frames[currentStep].classList.add("slide-down");
+                    frames[currentStep].classList.remove("slide-up");
+                    currentStep--;
+                  }
+                  frames[currentStep].classList.remove("slide-down");
+                  frames[currentStep].classList.remove("slide-up");
+                }
+                if (currentStep < index + 1) {
+                  while (currentStep < index + 1) {
+                    console.log(currentStep);
+                    console.log(frames[currentStep]);
+                    frames[currentStep].classList.add("slide-up");
+                    frames[currentStep].classList.remove("slide-down");
+                    currentStep++;
+                  }
+                  frames[currentStep].classList.remove("slide-down");
+                  frames[currentStep].classList.remove("slide-up");
+                }
+                prevButton.classList.remove("disabled");
+                nextButton.classList.remove("disabled");
+                if (currentStep <= 0) {
+                  prevButton.classList.add("disabled");
+                }
+                if (currentStep >= frames.length - 1) {
+                  nextButton.classList.add("disabled");
+                }
+                document.querySelector(".text-s").value = document.querySelectorAll(".frame")[currentStep].querySelector(".frame-p").textContent.trim();
+              })
+              slide.style.backgroundSize = "cover";
+              slide.style.backgroundRepeat = "no-repeat";
+
+              // slidess.innerHTML += slide.outerHTML
+              console.log(this)
+              slidess.insertBefore(slide, document.querySelector("#slide-add"));
+              if (document.querySelectorAll(".slide").length >= 6) {
+                this.scrollIntoView();
+              }
+              prevButton.classList.remove("disabled");
+              nextButton.classList.remove("disabled");
+              /*if (currentStep <= 0) {
+                prevButton.classList.add("disabled");
+              }
+              if (currentStep >= frames.length - 1) {
+                nextButton.classList.add("disabled");
+              }*/
+              /* $('.frame').each(function() {
+                $('#next').click();
+              }); */
+              $('.current').removeClass('current');
+              var elem = '<div class="frame frame-' + frame_id + ' slide-down" id="' + frame_id + '"><img src="" /><div class="frame-text">' +
+                '<p class="frame-p">Add frames, images, and text as needed.</p></div></div>';
+              $('.frames').append(elem);
+              /* $('#next').click(); */
+              frame_id++;
             }
-            frames[currentStep].classList.remove("slide-down");
-            frames[currentStep].classList.remove("slide-up");
           }
-          if (currentStep < index + 1) {
-            while (currentStep < index + 1) {
-              console.log(currentStep);
-              console.log(frames[currentStep]);
-              frames[currentStep].classList.add("slide-up");
-              frames[currentStep].classList.remove("slide-down");
-              currentStep++;
-            }
-            frames[currentStep].classList.remove("slide-down");
-            frames[currentStep].classList.remove("slide-up");
-          }
-          prevButton.classList.remove("disabled");
-          nextButton.classList.remove("disabled");
-          if (currentStep <= 0) {
-            prevButton.classList.add("disabled");
-          }
-          if (currentStep >= frames.length - 1) {
-            nextButton.classList.add("disabled");
-          }
-          document.querySelector(".text-s").value = document.querySelectorAll(".frame")[currentStep].querySelector(".frame-p").textContent.trim();
-        })
-        slide.style.backgroundSize = "cover";
-        slide.style.backgroundRepeat = "no-repeat";
-         
-        // slidess.innerHTML += slide.outerHTML
-        slidess.insertBefore(slide,this);
-        if (document.querySelectorAll(".slide").length >= 6) {
-          this.scrollIntoView();
-        }
-        prevButton.classList.remove("disabled");
-        nextButton.classList.remove("disabled");
-        /*if (currentStep <= 0) {
-          prevButton.classList.add("disabled");
-        }
-        if (currentStep >= frames.length - 1) {
-          nextButton.classList.add("disabled");
-        }*/
-        /* $('.frame').each(function() {
-          $('#next').click();
-        }); */
-        $('.current').removeClass('current');
-        var elem = '<div class="frame frame-' + frame_id + ' slide-down" id="' + frame_id + '"><img src="" /><div class="frame-text">' +
-          '<p class="frame-p">Add frames, images, and text as needed.</p></div></div>';
-        $('.frames').append(elem);
-        /* $('#next').click(); */
-        frame_id++;
+        });
       });
       $('#text').keyup(function() {
         var a = $(this).val();
@@ -1067,7 +1096,7 @@
 
 
       function readURL(input) {
-        if ($('.current').attr('id') != "1") {
+        if ($('.welcome-txt').hasClass("slide-up")) {
           if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
@@ -1081,9 +1110,12 @@
       }
 
       $('#form').on('change', function(e) {
-        if ($('.current').attr('id') != "1") {
+        console.log("change..")
+        if ($('.welcome-txt').hasClass("slide-up")) {
           var formData = new FormData(this);
           formData.append('name', '{{project_name}}');
+          formData.append('id', document.querySelector(".frame:not(.slide-up):not(.slide-down").dataset.slideId);
+          console.log(formData)
           $.ajax({
             url: "{% url 'addImgAjax' %}",
             type: 'POST',
@@ -1117,6 +1149,8 @@
             // }
           }
         });
+        this.textContent = "...";
+        let that = this;
         $.ajax({
           url: "{% url 'addSlideAjax' %}",
           type: 'POST',
@@ -1129,6 +1163,7 @@
           contentType: false,
           cache: false,
           success: function(data) {
+            that.textContent = "Save Project";
             alert('Project Saved');
           }
         });
