@@ -40,6 +40,7 @@ urlpatterns = [
     path('adwiti/<user>/<project_name>/', adwiti, name="adwiti"),
     path('projectStartAjax/', projectStartAjax, name="projectStartAjax"),
     path('addSlideAjax/', addSlideAjax, name="addSlideAjax"),
+    path('createSlideAjax/', createSlideAjax, name="createSlideAjax"),
     path('addImgAjax/', addImgAjax, name="addImgAjax"),
     path('account/', my_account, name="my_account"),
     path('update_info/', update_info, name="update_info"),
