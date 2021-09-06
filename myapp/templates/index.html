@@ -17,6 +17,7 @@
 </head>
 
 <body class="instant-wow-in-hero lazy">
+  
   <div id="body-wrapper">
     <!-- Content -->
     <div id="body-content">
@@ -796,24 +797,27 @@
                     Result file:
                     <a id="resultLink" href=""></a>
                   </p>
+                  
                 </div>
                 <div class="search-visuals" style="margin-top: 6%;">
                   <input type="search" placeholder="Search for visuals...">
                 </div>
-                <br>
+                <div class="loader" style="display: none;">
+                  <p>Loading...</p>
+                </div>
+                <!-- <img src="{% static 'images/ZZ5H.gif' %}" alt="Adwiti" class="loader" style="position: absolute; display: block; width: 2%; align-items: center;" /> -->
                 <center style="color:#56647d">
                   <button id="save-project">Save Project</button>
                 </center>
               </div>
-              <div class="slides">
-                <div class="slide-add" id="slide-add">
-                  <img src="{% static 'images/icon-plus.png' %}" alt="Add slides" class="icon">
-                </div>
+              <div class="slides" id="slides">
                 {% for s in data %}
                 <div class="slide" style="background-size: cover; background-repeat: no-repeat; background-image: url('/media/{{s.slide}}')">
                 </div>
                 {% endfor %}
-                
+                <div class="slide-add" id="slide-add">
+                  <img src="{% static 'images/icon-plus.png' %}" alt="Add slides" class="icon">
+                </div>
               </div>
             </div>
           </div>
@@ -863,6 +867,7 @@
       var slides = {};
       const slideAddButton = document.getElementById("slide-add");
       const slidess = document.querySelector(".slides");
+      const loader = document.querySelector(".loader");
       const allSlides = document.querySelectorAll(".slide");
       allSlides.forEach(function(slide, index) {
         slide.addEventListener("click", function() {
@@ -924,6 +929,7 @@
           var formData = new FormData();
           formData.append('name', '{{project_name}}');
           formData.append('data', JSON.stringify(result.dto.Files))
+          loader.style.display = "block";
           // formData = result.dto.Files.serialize()
           $.ajax({
             url: "{% url 'addPPTAjax' %}",
@@ -937,17 +943,30 @@
             contentType: false,
             cache: false,
             success: function(data) {
+              loader.style.display = "none";
               console.log(data);
               let response_data =  data.data
-              
+              let s =  document.getElementById("slides")
+              let frames = document.querySelectorAll(".frames.step-0");
               for (let i of response_data) {
                 let url_img = i.Url
-                let el = `<div class="slide" style="background-size: cover; background-repeat: no-repeat; background-image: url(${url_img})"></div>`
-                
-                slidess.innerHTML += el
-
+                let el = document.createElement("div")
+                el.classList.add("slide");
+                el.style = `background-image: url('${url_img}'); background-size: cover; background-repeat: no-repeat;`
+                //lt el = `<div class="slide" style="background-size: cover; background-repeat: no-repeat; background-image: url(${url_img})"></div>`
+                // <div class="frame frame-2 slide-up">
+                  // <img src="/media/Frame_12_2_5r3gJkI.png">
+                  //       <div class="frame-text">
+                  //         <p class="frame-p">
+                            
+                  //         </p>
+                  //       </div>
+                  //     </div>
+                  
+                let frame_el = `<div class="frame frame-2 slide-up"><img src=${url_img}/><div class="frame-text"> <p class="frame-p"></p></div></div>`
+                frames.innerHTML += frame_el
+                s.insertBefore(el, slideAddButton);
               }
-
 
             }
           });
@@ -955,7 +974,8 @@
           document.documentElement.style.cursor = 'default'
         }
       })
-      $('.slide-add').on('click', function() {
+      $('#slide-add').on('click', function() {
+        console.log(slideAddButton);
         const slide = document.createElement("div");
         slide.classList.add("slide");
         let index = document.querySelectorAll(".slide").length;
@@ -997,7 +1017,9 @@
         })
         slide.style.backgroundSize = "cover";
         slide.style.backgroundRepeat = "no-repeat";
-        slidess.insertBefore(slide, this);
+         
+        // slidess.innerHTML += slide.outerHTML
+        slidess.insertBefore(slide,this);
         if (document.querySelectorAll(".slide").length >= 6) {
           this.scrollIntoView();
         }
