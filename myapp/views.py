@@ -12,7 +12,6 @@ import os
 # NEW ROUTES
 import requests
 import tempfile
-
 from django.core import files
 
 
@@ -164,9 +163,10 @@ def projectStartAjax(request):
 
         return JsonResponse(data)
 
+
 def addPPTAjax(request):
-    user = projectUser.objects.get(user = request.user) 
-    proj = project.objects.get(user = user, name = request.POST['name'])
+    user = projectUser.objects.get(user=request.user)
+    proj = project.objects.get(user=user, name=request.POST['name'])
     # print(request.POST['data'])
     # for f in json.loads(request.POST['data']):
     #     print(f['FileName'])
@@ -178,7 +178,6 @@ def addPPTAjax(request):
         if response.status_code != requests.codes.ok:
             # Nope, error handling, skip file etc etc etc
             continue
-
 
         # Create a temporary file
         lf = tempfile.NamedTemporaryFile()
@@ -195,8 +194,8 @@ def addPPTAjax(request):
 
         # Create the model you want to save the image to
         sl = slide.objects.create(
-            file_type = "image",
-            slide = None,
+            file_type="image",
+            slide=None,
         )
 
         # Save the temporary image to the model#
@@ -204,7 +203,8 @@ def addPPTAjax(request):
         sl.slide.save(f['FileName'], files.File(lf))
         proj.slides.add(sl)
 
-    return JsonResponse({'data': "data"})
+    return JsonResponse({'data': json.loads(request.POST['data'])})
+
 
 def addImgAjax(request):
     data = {}
