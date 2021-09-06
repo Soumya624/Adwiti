@@ -771,10 +771,14 @@
                   <textarea name="text" id="text" cols="30" rows="10" placeholder="Click to add text (75 words)..." class="text-s" maxlength="91"></textarea>
                 </div>
                 <div class="visuals">
-                  <label for="">Add Visuals</label>
                   <div class="visual-buttons">
                     <form id="form" method="post">{% csrf_token %}
-                      <input type="file" name="file" id="file" onchange="readURL(this)" />
+                      <div style="text-align: center;">
+                        <label for="">Add Visuals</label>
+                        <br>
+                        <input type="file" name="file" id="file" onchange="readURL(this)" style="width: 38px;position: absolute;opacity: 0; cursor: pointer;margin-left: 28px;" />
+                        <img src="{% static 'images/icon-images.png' %}" alt="" style="opacity: 0.9;cursor: pointer;height: 25px;pointer-events: none;">
+                      </div>
                     </form>
                     <!-- The magic that makes it work -->
                     <!-- <label for="file">Choose a file</label> -->
@@ -795,10 +799,14 @@
                       <img src="{% static 'images/icon-flag.png' %}" alt="Flag" class="icon">
                       <span>Flag</span>
                     </button> -->
+                    <div style="text-align: center;">
+                      <label for="fileInput">Select PDF and Refresh</label>
+                      <br>
+                      <input id="fileInput" type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="width: 38px;position: absolute;opacity: 0; cursor: pointer;margin-left: 68px;">
+                      <img src="{% static 'images/icon-upload.png' %}" alt="" style="cursor: pointer;pointer-events: none;">
+                    </div>
                   </div>
                   <p></p>
-                  <label for="fileInput">Select PDF and Refresh</label>
-                  <input id="fileInput" type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document">
                   <p id="result">
                     Result file:
                     <a id="resultLink" href=""></a>
@@ -1047,7 +1055,7 @@
               console.log(this)
               slidess.insertBefore(slide, document.querySelector("#slide-add"));
               if (document.querySelectorAll(".slide").length >= 6) {
-                this.scrollIntoView();
+                that.scrollIntoView();
               }
               prevButton.classList.remove("disabled");
               nextButton.classList.remove("disabled");
