@@ -1,0 +1,5 @@
+Django==3.1.1
+sqlparse==0.4.1
+virtualenv==20.3.0
+cloudmersive-convert-api-client==3.2.1
+requests==2.25.1
