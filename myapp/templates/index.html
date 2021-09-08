@@ -218,8 +218,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                               <path d="M12 2c1.103 0 2 .897 2 2v7c0 1.103-.897 2-2 2s-2-.897-2-2v-7c0-1.103.897-2 2-2zm0-2c-2.209 0-4 1.791-4 4v7c0 2.209 1.791 4 4 4s4-1.791 4-4v-7c0-2.209-1.791-4-4-4zm8 9v2c0 4.418-3.582 8-8 8s-8-3.582-8-8v-2h2v2c0 3.309 2.691 6 6 6s6-2.691 6-6v-2h2zm-7 13v-2h-2v2h-4v2h10v-2h-4z" fill="#374050" /></svg>
                           </button></span>
-                        <span style="display: none;" id="recording">
-                          <button class="round-right" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-content">
+                        <span style="display: none;" id="recording" title="Recording Feature coming soon">
+                          <button class="round-right" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-content" disabled style="pointer-events: none;" title="Feature Coming Soon">
                             <img src="{% static 'images/record.svg' %}" alt="" width="14">
                           </button>
                         </span>
@@ -750,17 +750,17 @@
                 </script>
               </div>
               <div class="footer-btns">
-                <button class="flex-c need-fullscreen" disabled style="cursor: not-allowed;">
+                <button class="flex-c need-fullscreen">
                   <!-- <span class="bd">Present in video conference</span> -->
                   <span style="display: flex;align-items: center;">
                     <img src="{% static 'images/icon-dwn.png' %}" alt="Download" class="icon">
-                    <span>Present</span>
+                    <span style="margin-left: 0.5rem;">Present and Record</span>
                   </span>
                 </button>
-                <button style="cursor: not-allowed;" class="need-fullscreen" disabled>
+                {% comment %} <button style="cursor: not-allowed;" class="need-fullscreen" disabled>
                   <img src="{% static 'images/record.svg' %}" alt="videocam" class="icon">
                   <span class="bd">Record</span>
-                </button>
+                </button> {% endcomment %}
               </div>
             </div>
             <div class="modal-right">
@@ -1069,8 +1069,9 @@
                 $('#next').click();
               }); */
               $('.current').removeClass('current');
-              var elem = '<div class="frame frame-' + frame_id + ' slide-down" id="' + frame_id + '"><img src="" /><div class="frame-text">' +
-                '<p class="frame-p">Add frames, images, and text as needed.</p></div></div>';
+              //var elem = '<div class="frame frame-' + frame_id + ' slide-down" id="' + frame_id + '" data-slide-id=' + data.id + '"><img src="" /><div class="frame-text">' +
+              //'<p class="frame-p">Add frames, images, and text as needed.</p></div></div>';
+              var elem = `<div class="frame frame-${frame_id} slide-down" id="${frame_id}" data-slide-id="${data.id}"><img src=""><div class="frame-text"><p class="frame-p">Add frames, images, and text as needed.</p></div></div>`
               $('.frames').append(elem);
               /* $('#next').click(); */
               frame_id++;

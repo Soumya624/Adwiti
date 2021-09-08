@@ -848,6 +848,15 @@ button.dw-btn {
   }
 }
 
+@media (max-width: 876px) {
+  header .title {
+    display: none;
+  }
+  header .file-name {
+    margin-left: 71px;
+  }
+}
+
 .mobile-only-nav.view {
   display: flex;
 }
