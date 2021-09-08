@@ -1069,8 +1069,9 @@
                 $('#next').click();
               }); */
               $('.current').removeClass('current');
-              var elem = '<div class="frame frame-' + frame_id + ' slide-down" id="' + frame_id + '"><img src="" /><div class="frame-text">' +
-                '<p class="frame-p">Add frames, images, and text as needed.</p></div></div>';
+              //var elem = '<div class="frame frame-' + frame_id + ' slide-down" id="' + frame_id + '" data-slide-id=' + data.id + '"><img src="" /><div class="frame-text">' +
+              //'<p class="frame-p">Add frames, images, and text as needed.</p></div></div>';
+              var elem = `<div class="frame frame-${frame_id} slide-down" id="${frame_id}" data-slide-id="${data.id}"><img src=""><div class="frame-text"><p class="frame-p">Add frames, images, and text as needed.</p></div></div>`
               $('.frames').append(elem);
               /* $('#next').click(); */
               frame_id++;
