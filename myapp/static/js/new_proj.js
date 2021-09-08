@@ -3,6 +3,7 @@ const newProjModal = document.querySelector(".new-project-modal");
 const newProjModalClose = document.querySelector(".new-project-modal-close");
 const newProjForm = document.getElementById("new-project-form");
 const newProjFormButton = document.getElementById("new-project-form-button");
+const deleteProjButtons = document.querySelectorAll(".delete-project-btn");
 const tip = document.querySelector(".tip");
 const url = newProjForm.action;
 const csrfToken = document.querySelector(
@@ -47,3 +48,27 @@ function yes() {
       });
   }
 }
+deleteProjButtons.forEach((deleteProjButton) => {
+  deleteProjButton.addEventListener("click", function () {
+    const formData = new FormData();
+    formData.append("id", this.dataset.projectId);
+    this.setAttribute("disabled", "disabled");
+    fetch("/deleteProj/", {
+      method: "POST",
+      cache: "no-cache",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": this.dataset.csrfToken,
+      },
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message == "success") {
+          window.location = "/dashboard/";
+        } else {
+          window.location = "/dashboard/";
+        }
+      });
+  });
+});

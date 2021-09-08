@@ -820,9 +820,17 @@ form .form-group input::placeholder {
   border-radius: 0.4rem;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
-.project .project-illust img {
+.project .project-illust button {
+  position: absolute;
+  right: 0.6rem;
+  top: 0.8rem;
+  height: 26px;
+}
+
+.project .project-illust > img {
   width: 100%;
 }
 

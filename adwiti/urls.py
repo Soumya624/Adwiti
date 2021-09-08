@@ -39,6 +39,7 @@ urlpatterns = [
     path('dashboard/', dashboard, name="dashboard"),
     path('adwiti/<user>/<project_name>/', adwiti, name="adwiti"),
     path('projectStartAjax/', projectStartAjax, name="projectStartAjax"),
+    path('deleteProj/', deleteProj, name="deleteProj"),
     path('addSlideAjax/', addSlideAjax, name="addSlideAjax"),
     path('createSlideAjax/', createSlideAjax, name="createSlideAjax"),
     path('addImgAjax/', addImgAjax, name="addImgAjax"),

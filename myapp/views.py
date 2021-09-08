@@ -224,8 +224,9 @@ def addImgAjax(request):
     s = proj.slides.get(id=request.POST['id'])
     s.slide = request.FILES['file']
     s.save()
-    proj.save();
+    proj.save()
     return JsonResponse(data)
+
 
 def createSlideAjax(request):
     user = projectUser.objects.get(user=request.user)
@@ -246,6 +247,23 @@ def addSlideAjax(request):
         i += 1
 
     return JsonResponse(data)
+
+
+def deleteProj(request):
+    try:
+        try:
+            id = request.POST["id"]
+        except:
+            messages.error(request, "Something went wrong")
+            return JsonResponse({"message": "error"})
+        project.objects.get(id=id, user=projectUser.objects.get(
+            user=request.user)).delete()
+        messages.info(request, "Project Deleted Successfully")
+        return JsonResponse({"message": "success"})
+    except:
+        messages.error(
+            request, "Looks like you've already deleted your project")
+        return JsonResponse({"message": "no-proj"})
 
 
 def update_info(request):

@@ -11,9 +11,12 @@ Adwiti Dashboard
     <button type="button" class="button" id="new-project">New Project</button>
   </div>
   <div class="projects">
-    {% for i in data %}
+    {% for i in data reversed%}
     <div class="project">
       <div class="project-illust">
+        <button class="delete-project-btn" data-csrf-token="{{ csrf_token }}" data-project-id="{{ i.id }}">
+          <img src="{% static 'images/delete.svg' %}" alt="Delete Project">
+        </button>
         <img src="{% static 'images/project_illust.svg' %}" alt="Illustration">
       </div>
       <div class="project-cta">
