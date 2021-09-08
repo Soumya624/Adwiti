@@ -962,3 +962,18 @@ button.dw-btn {
     transform: none !important;
   }
 }
+
+.only-full {
+  display: none !important;
+}
+
+.only-full.full {
+  display: flex !important;
+  position: absolute;
+  left: 12px;
+}
+
+.only-full.full + .left-group {
+  margin-left: 45px;
+}
+
