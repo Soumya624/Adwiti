@@ -26,7 +26,7 @@ SECRET_KEY = 'fqhtf5mk@=)-csg4xa6)i*1op2#lp^^%5+vc@x7*$iyb@tk1g7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['adwiti.pythonanywhere.com']
 
 
 # Application definition
@@ -120,7 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'myapp', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATICFILES_DIR = [
 #     os.path.join(BASE_DIR, 'static'),
 # ]
