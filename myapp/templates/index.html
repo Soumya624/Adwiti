@@ -185,17 +185,26 @@
                     </div>
                   </div>
                   <div class="controls">
+                    <div class="left-group only-full">
+                      <div class="view-modes button-group">
+                        <span data-toggle="tooltip" data-placement="top" title="Exit Full Screen"><button id="exit-fullscreen" class="round-left">
+                            <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41421 6.00008L8.70711 1.70718L7.29289 0.292969L1.29289 6.29297L0.585787 7.00008L1.29289 7.70718L7.29289 13.7072L8.70711 12.293L4.41421 8.00008H17V6.00008H4.41421Z" fill="#374050" />
+                            </svg>
+                          </button></span>
+                      </div>
+                    </div>
                     <div class="left-group">
                       <div class="view-modes button-group">
-                        <span data-toggle="tooltip" data-placement="bottom" title="Only you"><button id="view-mode-only-you" class="round-left" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-you">
+                        <span data-toggle="tooltip" data-placement="top" title="Only you"><button id="view-mode-only-you" class="round-left" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-you">
                             <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M7.48879 9.0667V9.9892H7.72927C8.86241 9.99644 9.9469 10.4643 10.7467 11.2911C11.5466 12.1178 11.997 13.2365 12 14.4035C12 16.5322 0 16.5322 0 14.4035C0.00403311 13.232 0.458454 12.1098 1.26383 11.2826C2.06921 10.4553 3.15997 9.99023 4.29743 9.9892H4.52979V9.0678C3.75329 8.47199 3.6073 7.42225 3.4663 6.40835C3.43632 6.19279 3.40657 5.97885 3.37103 5.77124C3.20142 5.77062 3.03848 5.70312 2.91569 5.58261C2.7929 5.4621 2.71958 5.29774 2.71079 5.12328C2.702 4.94882 2.75842 4.77753 2.86845 4.64458C2.97848 4.51163 3.13376 4.42714 3.3024 4.40844L3.2757 3.90181C3.22505 3.66846 3.19947 3.43008 3.19944 3.19096C3.15993 2.80157 3.19764 2.40797 3.31027 2.03404C3.42291 1.66011 3.60812 1.31364 3.85468 1.01566C4.10124 0.717676 4.40401 0.47439 4.74461 0.300554C5.08522 0.126718 5.45655 0.0259601 5.8361 0.0043904C6.21565 -0.0171793 6.5955 0.0408879 6.95261 0.175074C7.30971 0.309259 7.63663 0.516766 7.91352 0.785001C8.19042 1.05324 8.41151 1.37661 8.56341 1.7355C8.7153 2.0944 8.79483 2.48134 8.79715 2.87285V2.91212V3.19096C8.79622 3.40844 8.77579 3.62537 8.73614 3.83898L8.70564 4.40844C8.87427 4.42714 9.02956 4.51163 9.13959 4.64458C9.24961 4.77753 9.30603 4.94882 9.29724 5.12328C9.28846 5.29774 9.21513 5.4621 9.09234 5.58261C8.96955 5.70312 8.80661 5.77062 8.637 5.77124C8.60341 5.97413 8.57517 6.18315 8.54671 6.39387C8.40921 7.4117 8.26637 8.46912 7.48879 9.0667Z" fill="#374050"></path>
                             </svg></button></span>
-                        <span data-toggle="tooltip" data-placement="bottom" title="You and your content"><button id="view-mode-you-and-content" class="selected" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-you-and-content">
+                        <span data-toggle="tooltip" data-placement="top" title="You and your content"><button id="view-mode-you-and-content" class="selected" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-you-and-content">
                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M8 8.4787V9H15V4H8.72752L8.70564 4.40844C8.87427 4.42714 9.02956 4.51163 9.13959 4.64458C9.24961 4.77753 9.30603 4.94882 9.29724 5.12328C9.28846 5.29774 9.21513 5.4621 9.09234 5.58261C8.96955 5.70312 8.80661 5.77062 8.637 5.77124C8.60341 5.97413 8.57517 6.18315 8.54671 6.39387C8.44709 7.13136 8.34466 7.88962 8 8.4787ZM8.6607 2H16C16.5523 2 17 2.44772 17 3V10C17 10.5523 16.5523 11 16 11H10.4362C10.5438 11.0914 10.6475 11.1885 10.7467 11.2911C11.5466 12.1178 11.997 13.2365 12 14.4035C12 16.5322 0 16.5322 0 14.4035C0.00403311 13.232 0.458454 12.1098 1.26383 11.2826C2.06921 10.4553 3.15997 9.99023 4.29743 9.9892H4.52979V9.0678C3.75329 8.47199 3.6073 7.42225 3.4663 6.40835C3.43632 6.19279 3.40657 5.97885 3.37103 5.77124C3.20142 5.77062 3.03848 5.70312 2.91569 5.58261C2.7929 5.4621 2.71958 5.29774 2.71079 5.12328C2.702 4.94882 2.75842 4.77753 2.86845 4.64458C2.97848 4.51163 3.13376 4.42714 3.3024 4.40844L3.27571 3.90181C3.22505 3.66846 3.19947 3.43008 3.19944 3.19096C3.15993 2.80157 3.19764 2.40797 3.31027 2.03404C3.42291 1.66011 3.60812 1.31364 3.85468 1.01566C4.10124 0.717676 4.40401 0.47439 4.74461 0.300554C5.08522 0.126718 5.45655 0.0259601 5.8361 0.0043904C6.21565 -0.0171793 6.5955 0.0408879 6.95261 0.175074C7.30971 0.309259 7.63663 0.516766 7.91352 0.785001C8.19042 1.05324 8.41151 1.37661 8.56341 1.7355C8.60008 1.82215 8.63253 1.91042 8.6607 2Z" fill="#374050"></path>
                             </svg></button></span>
-                        <span class="o-c" data-toggle="tooltip" data-placement="bottom" title="Only your content">
+                        <span class="o-c" data-toggle="tooltip" data-placement="top" title="Only your content">
                           <button id="view-mode-only-content" class="round-right" data-object="logged_element" data-page-location="instant-wow-modal" data-element-text="view-mode-only-content">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M6 8V16H18V8H6ZM5 6C4.44772 6 4 6.44772 4 7V17C4 17.5523 4.44772 18 5 18H19C19.5523 18 20 17.5523 20 17V7C20 6.44772 19.5523 6 19 6H5Z" fill="#374050"></path>
@@ -859,8 +868,12 @@
       needFullScreen.forEach(element => {
         element.addEventListener("click", function() {
           fullScreen();
-        })
-      })
+        });
+      });
+      const exitFullScreenBtn = document.querySelector("#exit-fullscreen");
+      exitFullScreenBtn.addEventListener("click", function() {
+        exitFullScreen();
+      });
 
       function fullScreen() {
         document.querySelector(".notes-btn").style.display = "none";
@@ -873,6 +886,20 @@
         document.querySelector(".row").classList.add("no-padding");
         document.querySelector("#body-content").classList.add("no-padding");
         document.querySelector("html").style.overflow = "hidden";
+        document.querySelector(".only-full").classList.add("full");
+      }
+
+      function exitFullScreen() {
+        document.querySelector(".notes-btn").style.display = "block";
+        document.querySelector("header").style.display = "flex";
+        document.querySelector(".modal-right").style.display = "flex";
+        document.querySelector(".footer-btns").style.display = "flex";
+        document.querySelector("#instant-wow-modal").classList.remove("fullscreen");
+        document.querySelector(".m-m").classList.remove("no-padding");
+        document.querySelector(".row").classList.remove("no-padding");
+        document.querySelector("#body-content").classList.remove("no-padding");
+        document.querySelector("html").style.overflow = "auto";
+        document.querySelector(".only-full").classList.remove("full");
       }
     </script>
 
