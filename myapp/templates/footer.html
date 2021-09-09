@@ -3,17 +3,35 @@
   <hr class="rule">
   <div class="footer-in">
     <ul class="links">
-      <li><a href="#">Startup</a></li>
+      <li><a href="{% url "hiw" %}">How it works</a></li>
       <li><a href="{% url "about" %}">About</a></li>
-      <li><a href="#">Carrers</a></li>
-      <li><a href="#">Support</a></li>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="#">Feature Request</a></li>
+      {% if not request.user.is_authenticated %}
+      <li><a href="{% url "pricing" %}">Pricing</a></li>
+      <li><a href="#" class="invoke-login">Login</a></li>
+      {% else %}
+      <li><a href="{% url "my_account" %}">My Account</a></li>
+      {% endif %}
+      <li><a href="#">Blogs</a></li>
     </ul>
     <ul class="links">
-      <li><a href="#">Resources</a></li>
+      {% comment %} <li><a href="#">Resources</a></li>
       <li><a href="{% url "hiw" %}">How it works</a></li>
-      <li><a href="#">Features</a></li>
+      <li><a href="#">Features</a></li> {% endcomment %}
+      <li>Contact us at: <a href="mailto:contact@adwiti.com" style="display: block;">contact@adwiti.com</a></li>
+      <div class="social-links">
+        <a href="https://www.facebook.com/adwiti.tool/">
+          <img src="{% static 'images/fb.png' %}" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/adwiti_com/">
+          <img src="{% static 'images/ig.png' %}" alt="Instagram">
+        </a>
+        <a href="https://www.linkedin.com/company/adwiti">
+          <img src="{% static 'images/li.png' %}" alt="Linkedin">
+        </a>
+        <a href="#">
+          <img src="{% static 'images/yt.png' %}" alt="Youtube" style="width: 130%;">
+        </a>
+      </div>
     </ul>
     <div class="newsletter">
       <h2>Join our Newsletter</h2>
@@ -25,20 +43,6 @@
         <button class="button">Subscribe</button>
       </div>
     </div>
-  </div>
-  <div class="social-links">
-    <a href="#">
-      <img src="{% static 'images/fb.png' %}" alt="Facebook">
-    </a>
-    <a href="#">
-      <img src="{% static 'images/ig.png' %}" alt="Instagram">
-    </a>
-    <a href="#">
-      <img src="{% static 'images/li.png' %}" alt="Linkedin">
-    </a>
-    <a href="#">
-      <img src="{% static 'images/yt.png' %}" alt="Youtube">
-    </a>
   </div>
   <hr class="rule">
   <div class="privacy">

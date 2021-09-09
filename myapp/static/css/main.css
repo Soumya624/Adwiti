@@ -6709,7 +6709,7 @@ html {
   position: relative;
 }
 #body-content {
-  padding-bottom: 144px;
+  /* padding-bottom: 144px; */
 }
 #body-footer {
   width: 100%;
