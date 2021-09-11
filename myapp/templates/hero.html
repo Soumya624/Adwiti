@@ -3,7 +3,7 @@
   <h1>Making complex ideas easier to <span>convey</span></h1>
   <p>Adwiti is a powerful personalized presentation tool, which helps in connecting audiences with your ideas.</p>
   {% if not request.user.is_authenticated %}
-  <a href="{% url "login" %}" class="button">Get Started</a>
+  <a href="#" class="button invoke-register">Get Started</a>
   {% else %}
   <a href="{% url "dashboard" %}" class="button">Get Started</a>
   {% endif %}
