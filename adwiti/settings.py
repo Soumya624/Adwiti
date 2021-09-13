@@ -26,7 +26,7 @@ SECRET_KEY = 'fqhtf5mk@=)-csg4xa6)i*1op2#lp^^%5+vc@x7*$iyb@tk1g7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['adwiti.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['adwiti.pythonanywhere.com', 'localhost', '127.0.0.1', 'adwiti.com']
 
 
 # Application definition
