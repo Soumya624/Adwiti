@@ -69,6 +69,22 @@ button,
   transition: color 0.4s, background-color 0.4s, transform 0.4s;
 }
 
+.iframe-container{
+  position: relative;
+  width: 84%;
+  padding-bottom: 53.25%; 
+  height: 0;
+  margin-left: 5%;
+  margin-bottom: -15%;
+}
+.iframe-container iframe{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 95%;
+  height: 95%;
+}
+
 .button {
   background-color: #fc262d;
   color: #ffffff;
@@ -116,6 +132,8 @@ header {
   display: flex;
   align-items: center;
 }
+
+
 
 .logo a img {
   width: 11.5rem;
@@ -1011,6 +1029,10 @@ form .form-group input::placeholder {
 }
 
 @media (min-width: 758px) {
+
+
+
+
   .option-expansion {
     display: flex;
     gap: 2rem;
@@ -1035,6 +1057,11 @@ form .form-group input::placeholder {
     top: 2rem;
     transform: translate(-50%, 0%);
   }
+
+
+
+
+  
 }
 
 @media (max-height: 367px) {
@@ -1054,6 +1081,10 @@ form .form-group input::placeholder {
     margin-right: auto;
     text-align: center;
   }
+
+
+
+
 }
 
 @media (min-width: 677px) {
@@ -1077,6 +1108,26 @@ form .form-group input::placeholder {
 }
 
 @media (min-width: 600px) {
+
+
+.iframe-container{
+    position: relative;
+    width: 95%;
+    padding-bottom: 53.25%; 
+    height: 0;
+    margin-left: 5%;
+    margin-bottom: -15%;
+  }
+ .iframe-container iframe{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 95%;
+    height: 95%;
+  }
+  
+
+
   .plans {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1140,6 +1191,27 @@ form .form-group input::placeholder {
     width: 47.9rem;
     margin: auto;
   }
+  
+
+  .iframe-container {
+      position: relative;
+      width: 95%;
+      padding-bottom: 53.25%;
+      height: 0;
+      margin-left: 5%;
+      margin-bottom: -15%;
+  }
+  .iframe-container {
+      position: relative;
+      width: 84%;
+      padding-bottom: 45.25%;
+      height: 0;
+      margin-left: 5%;
+      margin-bottom: -15%;
+  }
+
+
+
 }
 
 @media (max-width: 375px) {
@@ -1170,6 +1242,11 @@ form .form-group input::placeholder {
     margin-bottom: 3.2rem;
     border-radius: 0.4rem;
   }
+
+
+
+
+
 }
 
 @media (min-width: 710px) {
@@ -1264,3 +1341,78 @@ form .form-group input::placeholder {
 .info {
   background-color: hsl(249, 4%, 33%);
 }
+@media (min-width: 576px) {
+  
+  
+
+  .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 5.25%;
+      height: 0;
+      margin-left: 5%;
+      margin-bottom: -15%;
+  }
+  .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 45.25%;
+      height: 0;
+      margin-left: 5%;
+      margin-bottom: -15%;
+  }
+
+
+
+}
+
+@media (min-width: 464px) {
+  
+  
+
+  .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 55.25%;
+      height: 0;
+      margin-left: 5%;
+      margin-bottom: -15%;
+  }
+  .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 50.25%;
+      height: 0;
+      margin-left: 5%;
+      margin-bottom: -15%;
+  }
+
+
+
+}
+
+@media (min-width: 400px) {
+  
+  
+
+  .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 55.25%;
+      height: 0;
+      margin-left: 5%;
+      margin-bottom: -15%;
+  }
+  .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 53.25%;
+      height: 0;
+      margin-left: 5%;
+      margin-bottom: -15%;
+  }
+
+
+
+}
+
